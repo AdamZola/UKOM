@@ -1,0 +1,93 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit2H
+#define Unit2H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Grids.hpp>
+#include "cspin.h"
+//---------------------------------------------------------------------------
+class TForm2 : public TForm
+{
+__published:	// IDE-managed Components
+	TPanel *Panel1;
+	TPanel *Panel2;
+	TLabel *Label1;
+	TLabel *Label2;
+	TPanel *Panel3;
+	TDBGrid *DBGrid1;
+	TComboBox *ComboBox1;
+	TLabel *Label3;
+	TEdit *A;
+	TMemo *Msoal;
+	TLabel *Label4;
+	TLabel *Label5;
+	TEdit *B;
+	TLabel *Label6;
+	TEdit *C;
+	TLabel *Label7;
+	TEdit *D;
+	TLabel *Label8;
+	TEdit *Esoalke;
+	TLabel *Label9;
+	TPanel *Panel4;
+	TPanel *Panel5;
+	TPanel *Panel6;
+	TPanel *Panel7;
+	TComboBox *ComboBox2;
+	TLabel *Label10;
+	TDBGrid *DBGrid2;
+	TPanel *Panel8;
+	TLabel *Label11;
+	TLabel *Label12;
+	TLabel *Label15;
+	TLabel *Label16;
+	TLabel *Label13;
+	TLabel *Label14;
+	TEdit *E;
+	TEdit *Euser;
+	TEdit *Epwd;
+	TEdit *Eemail;
+	TComboBox *cbjk;
+	TLabel *Label17;
+	TLabel *Label18;
+	TLabel *Label19;
+	TLabel *Label20;
+	TPanel *Panel10;
+	TPanel *Panel9;
+	TPanel *Panel11;
+	TPanel *Panel12;
+	TCSpinEdit *CSpinEdit1;
+	TLabel *Label21;
+	TCSpinEdit *CSpinEdit2;
+	TPanel *Panel13;
+	TLabel *Label22;
+	TLabel *Label23;
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall Label1Click(TObject *Sender);
+	void __fastcall ComboBox1Change(TObject *Sender);
+	void __fastcall Label2Click(TObject *Sender);
+	void __fastcall DBGrid1CellClick(TColumn *Column);
+	void __fastcall Panel4Click(TObject *Sender);
+	void __fastcall Panel5Click(TObject *Sender);
+	void __fastcall Panel6Click(TObject *Sender);
+	void __fastcall ComboBox2KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall Panel10Click(TObject *Sender);
+	void __fastcall Panel9Click(TObject *Sender);
+	void __fastcall Panel11Click(TObject *Sender);
+	void __fastcall DBGrid2CellClick(TColumn *Column);
+	void __fastcall Panel13Click(TObject *Sender);
+	void __fastcall Label23Click(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TForm2(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm2 *Form2;
+//---------------------------------------------------------------------------
+#endif

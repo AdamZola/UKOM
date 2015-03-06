@@ -1,0 +1,163 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+#include "Unit2.h"
+#include "Unit3.h"
+#include "Unit4.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Panel8Click(TObject *Sender)
+{
+Fsis->Qregister->Close();
+Fsis->Qregister->SQL->Clear();
+Fsis->Qregister->SQL->Add("select *from register");
+Fsis->Qregister->Open();
+
+			   Fsis->Qregister->Append();
+			   Fsis->Qregister->FieldValues ["id"] = Edit5->Text;
+			   Fsis->Qregister->FieldValues ["username"] = Edit6->Text;
+			   Fsis->Qregister->FieldValues ["password"] = Edit7->Text;
+			   Fsis->Qregister->FieldValues ["email"] = Edit8->Text;
+			   Fsis->Qregister->FieldValues ["jenis_kelamin"] = ComboBox1->Text;
+
+			   Fsis->Qregister->Post();
+
+		MessageBoxA(0,"Data Telah Terdaftar ", "Warning", MB_ICONINFORMATION|MB_OK);
+		Panel4->Visible = false;
+		CheckBox3->Checked = false;
+		CheckBox2->Checked = true;
+
+
+Edit5->Clear();
+Edit6->Clear();
+Edit7->Clear();
+Edit8->Clear();
+ComboBox1->Clear();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Label4Click(TObject *Sender)
+{
+Panel4->Visible = false;
+CheckBox3->Checked = false;
+CheckBox2->Checked = true;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::CheckBox1Click(TObject *Sender)
+{
+if (CheckBox1->Checked == true) {
+   Edit2->PasswordChar = 0;
+}  else {
+   Edit2->PasswordChar = 7;
+}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::CheckBox2Click(TObject *Sender)
+{
+CheckBox3->Checked = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::CheckBox3Click(TObject *Sender)
+{
+CheckBox2->Checked = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormShow(TObject *Sender)
+{
+CheckBox3->Checked = false;
+CheckBox2->Checked = true;
+Panel4->Visible = false;
+Edit1->SetFocus();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Panel7Click(TObject *Sender)
+{
+if (Edit1->Text == "") {
+	MessageBoxA(0,"Identitas pengguna tidak boleh kosong!","Informasi", MB_ICONWARNING | MB_OK);
+	Edit2->Clear();
+}
+
+else if (Edit2->Text =="") {
+	MessageBoxA(0,"Kata sandi tidak boleh kosong!","Informasi", MB_ICONWARNING | MB_OK);
+	Edit1->Clear();
+}
+
+else {
+
+		if (CheckBox3->Checked == true) {
+			Fsis->Qadmin->Close();
+			Fsis->Qadmin->SQL->Clear();
+			Fsis->Qadmin->SQL->Add("select *from admin where username='"+Edit1->Text+"'");
+			Fsis->Qadmin->Open();
+
+				if (!Fsis->Qadmin->IsEmpty()) {
+					if (Fsis->Qadmin->FieldByName("password")->AsString == Edit2->Text) {
+						 MessageBoxA(0,"Anda berhasil login!","Informasi", MB_ICONINFORMATION | MB_OK);
+                         Form2->Show();
+						 Form1->Hide();
+						 Edit1->Clear();
+						 Edit2->Clear();
+
+
+                    }  else {
+							MessageBoxA(0,"Kata sandi yang anda masukan salah!","Peringatan!", MB_ICONWARNING | MB_OK);
+							Edit2->Clear();
+					}
+				} else {
+							MessageBoxA(0,"Identitas pengguna yang anda masukan salah!","Peringatan!", MB_ICONWARNING | MB_OK);
+							Edit1->Clear();
+							Edit2->Clear();
+							Edit1->SetFocus();
+				}
+
+
+
+}  else {
+
+			Fsis->Qregister->Close();
+			Fsis->Qregister->SQL->Clear();
+			Fsis->Qregister->SQL->Add("select *from register where username='"+Edit1->Text+"'");
+			Fsis->Qregister->Open();
+
+				if (!Fsis->Qregister->IsEmpty()) {
+
+					if (Fsis->Qregister->FieldByName("password")->AsString == Edit2->Text) {
+							MessageBoxA(0,"Anda berhasil login!","Informasi", MB_ICONINFORMATION | MB_OK);
+                            Form1->Hide();
+							Form3->Show();
+							Edit1->Clear();
+							Edit2->Clear();
+
+
+					} else {
+							MessageBoxA(0,"Kata sandi yang anda masukan salah!","Peringatan!", MB_ICONWARNING | MB_OK);
+							Edit2->Clear();
+					}
+
+
+				}  else {
+							MessageBoxA(0,"Identitas pengguna yang anda masukan salah!","Peringatan!", MB_ICONWARNING | MB_OK);
+							Edit1->Clear();
+							Edit2->Clear();
+							Edit1->SetFocus();
+				}
+		}
+		}
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Label2Click(TObject *Sender)
+{
+Panel4->Visible = true;
+}
+//---------------------------------------------------------------------------

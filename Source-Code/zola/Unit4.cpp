@@ -1,0 +1,19 @@
+	//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit4.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma link "frxClass"
+#pragma link "frxDBSet"
+#pragma resource "*.dfm"
+TFsis *Fsis;
+//---------------------------------------------------------------------------
+__fastcall TFsis::TFsis(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+

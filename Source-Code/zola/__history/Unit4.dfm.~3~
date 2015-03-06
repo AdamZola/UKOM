@@ -1,0 +1,76 @@
+object Fsis: TFsis
+  Left = 0
+  Top = 0
+  Caption = 'Fsis'
+  ClientHeight = 264
+  ClientWidth = 447
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object koneksi: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=MSDASQL.1;Persist Security Info=False;User ID=root;Data' +
+      ' Source=Online;Initial Catalog=ukom'
+    LoginPrompt = False
+    Left = 48
+    Top = 40
+  end
+  object Qadmin: TADOQuery
+    Active = True
+    Connection = koneksi
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from admin')
+    Left = 120
+    Top = 40
+  end
+  object Qsoal: TADOQuery
+    Connection = koneksi
+    Parameters = <>
+    Left = 248
+    Top = 48
+  end
+  object DSmasterdata: TDataSource
+    DataSet = Qmasterdata
+    Left = 320
+    Top = 112
+  end
+  object Qregister: TADOQuery
+    Active = True
+    Connection = koneksi
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from register')
+    Left = 184
+    Top = 48
+  end
+  object Qmasterdata: TADOQuery
+    Active = True
+    Connection = koneksi
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from masterdata')
+    Left = 312
+    Top = 48
+  end
+  object DSsoal: TDataSource
+    DataSet = Qsoal
+    Left = 248
+    Top = 112
+  end
+  object DSregister: TDataSource
+    DataSet = Qregister
+    Left = 184
+    Top = 120
+  end
+end
